@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Roadmap</title>
+	<meta name="tURL" id="tURL" content="../../../"/>
+	<meta name="description" content="区别/missing-nothing-undef的区分 - Roadmap">
+	<script src="../../../js/menu.js"></script>
+	<script src='https://giscus.app/client.js' data-repo='JuliaRoadmap/zh' data-repo-id='R_kgDOHQYI2Q' data-category='General' data-category-id='DIC_kwDOHQYI2c4CO2c9' data-mapping='pathname' data-reactions-enabled='1' data-emit-metadata='0' data-input-position='top' data-theme='preferred_color_scheme' data-lang='zh-CN' crossorigin='anonymous' async></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../js/main.js"></script>
+	<link id="theme-href" rel="stylesheet" type="text/css" href="../../../css/light.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/general.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/fontawesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/solid.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/brands.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+<body>
+	<div id="documenter">
+		<nav class="docs-sidebar">
+			<a class="docs-logo"><img src="../../../assets/images/logo.png" alt="alt" height="96" width="144"></a>
+			<div class="docs-package-name">
+			<span class="docs-autofit">Roadmap</span>
+			</div>
+			<ul class="docs-menu"></ul>
+		</nav>
+		<div class="docs-main">
+			<header class="docs-navbar">
+				<nav class="breadcrumb">
+					<ul class="is-hidden-mobile"><li class="is-active">区别 / missing-nothing-undef的区分</li></ul>
+					<ul class="is-hidden-tablet"><li class="is-active">区别 / missing-nothing-undef的区分</li></ul>
+				</nav>
+				<div class="docs-right">
+					<a class="docs-edit-link" href="https://github.com/JuliaRoadmap/zh/tree/master/docs/tips/diff/missing_nothing_undef.md" target="_blank">
+						<span class="docs-label is-hidden-touch">编辑此页面</span>
+					</a>
+					<a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="设置"></a>
+					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
+				</div>
+			</header>
+			<article class="content"><h1 id='header-missing-nothing-undef的区分'>missing-nothing-undef的区分<a class='docs-heading-anchor-permalink'></a></h1><ul><li><code>missing</code>一般用于
+<ul>
+<li>三值逻辑</li>
+<li>在概率统计中，表明这个值是缺失的</li>
+</ul>
+</li>
+</ul><ul><li><code>undef</code> 用于数组的初始化，如<code>Array{Float64, 2}(undef, 4, 4)</code>，表示直接使用分配的内存里原先的数据</li>
+</ul><ul><li><code>nothing</code>一般用于表明
+<ul>
+<li>表明该函数没有返回值</li>
+<li>某个参数不设定默认值</li>
+</ul>
+<pre><code class="language-jl">function f(A; r=nothing)
+	r = isnothing(r) ? size(r) .÷ 2 : r
+	...
+end
+</code></pre>
+基本类似于<code>f(A; r=size(r).÷ 2) = ...</code>但在一些场景下确实是有用的，比如说需要处理更复杂的可选值的逻辑，甚至在某些情况下抛出一些 <code>@warn</code> 或 <code>error</code> 的话，那么放在函数签名里去做就显得太冗长和复杂了。</li>
+</ul><p><code>nothing</code>和<code>missing</code>具体的处理取决于工具箱内部的实现</p><div id='footnote-1' class='footnote'><span>1. </span><p>https://discourse.juliacn.com/t/topic/6282/3</p></div></article>
+			<nav class="docs-footer"><a class="docs-footer-prevpage" href="index.html">« 索引</a></nav>
+			<div class='giscus'></div>
+		</div>
+		<div class="modal" id="documenter-settings">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">设置</p>
+					<button class="delete"></button>
+				</header>
+				<section class="modal-card-body">
+					<p><label class="label">选择主题</label>
+						<div class="select">
+							<select id="documenter-themepicker">
+								<option value="light">light</option><option value="dark">dark</option>
+							</select>
+						</div>
+					</p>
+				</section>
+				<footer class="modal-card-foot"></footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

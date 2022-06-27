@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Roadmap</title>
+	<meta name="tURL" id="tURL" content="../../"/>
+	<meta name="description" content="语法基础/变量简介 - Roadmap">
+	<script src="../../js/menu.js"></script>
+	<script src='https://giscus.app/client.js' data-repo='JuliaRoadmap/zh' data-repo-id='R_kgDOHQYI2Q' data-category='General' data-category-id='DIC_kwDOHQYI2c4CO2c9' data-mapping='pathname' data-reactions-enabled='1' data-emit-metadata='0' data-input-position='top' data-theme='preferred_color_scheme' data-lang='zh-CN' crossorigin='anonymous' async></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../js/main.js"></script>
+	<link id="theme-href" rel="stylesheet" type="text/css" href="../../css/light.css">
+	<link rel="stylesheet" type="text/css" href="../../css/general.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/fontawesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/solid.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/brands.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+<body>
+	<div id="documenter">
+		<nav class="docs-sidebar">
+			<a class="docs-logo"><img src="../../assets/images/logo.png" alt="alt" height="96" width="144"></a>
+			<div class="docs-package-name">
+			<span class="docs-autofit">Roadmap</span>
+			</div>
+			<ul class="docs-menu"></ul>
+		</nav>
+		<div class="docs-main">
+			<header class="docs-navbar">
+				<nav class="breadcrumb">
+					<ul class="is-hidden-mobile"><li class="is-active">语法基础 / 变量简介</li></ul>
+					<ul class="is-hidden-tablet"><li class="is-active">语法基础 / 变量简介</li></ul>
+				</nav>
+				<div class="docs-right">
+					<a class="docs-edit-link" href="https://github.com/JuliaRoadmap/zh/tree/master/docs/basic/variable_basic.md" target="_blank">
+						<span class="docs-label is-hidden-touch">编辑此页面</span>
+					</a>
+					<a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="设置"></a>
+					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
+				</div>
+			</header>
+			<article class="content"><h1 id='header-变量简介'>变量简介<a class='docs-heading-anchor-permalink'></a></h1><p>Julia有丰富的变量类型，包括但不限于整数、浮点数、字符串、指针……<br /><br />Julia是弱类型语言，允许同一变量前后类型不同<br /><br />请在REPL中尝试以下示例</p><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">v=</span><span class="hl-number">1</span><span class="hl-plain">&nbsp;</span><span class="hl-comment">#&nbsp;初始化(initialize)、赋值(assign)</span><br /><span class="hl-number">1</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">v&nbsp;</span><span class="hl-comment">#&nbsp;读取值</span><br /><span class="hl-number">1</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">v+=</span><span class="hl-number">1</span><span class="hl-plain">&nbsp;</span><span class="hl-comment">#&nbsp;改变值</span><br /><span class="hl-number">2</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">v=</span><span class="hl-string">"var"</span><span class="hl-plain">&nbsp;</span><span class="hl-comment">#&nbsp;改变类型</span><br /><span class="hl-string">"var"</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">变量=</span><span class="hl-number">1</span><span class="hl-plain">&nbsp;</span><span class="hl-comment">#&nbsp;变量名允许中文！</span><br /><span class="hl-number">1</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">变量=sqrt&nbsp;</span><span class="hl-comment">#&nbsp;函数也可以是变量</span><br /><span class="hl-plain">sqrt&nbsp;(generic&nbsp;</span><span class="hl-keyword">function</span><span class="hl-plain">&nbsp;with&nbsp;</span><span class="hl-number">19</span><span class="hl-plain">&nbsp;methods)<br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-function">变量</span><span class="hl-plain">(</span><span class="hl-number">4</span><span class="hl-plain">)<br /></span><span class="hl-number">2</span><span class="hl-plain">.</span><span class="hl-number">0</span><span class="hl-plain"><br /></span></div></div><br /><div class='admonition is-info'><header class='admonition-header'>Tips</header><div class='admonition-body'><p>julia暂时不支持变量删除，如果有占空间的变量希望删除，可以赋值为<a href='little_types.html#header-%E6%97%A0' target='_blank'>nothing</a></p></div></div><h2 id='header-变量命名'>变量命名<a class='docs-heading-anchor-permalink'></a></h2><ul><li>变量名区分大小写</li>
+</ul><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">a=</span><span class="hl-number">0</span><span class="hl-plain"><br /></span><span class="hl-number">0</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-type">A</span><span class="hl-plain">=</span><span class="hl-number">1</span><span class="hl-plain"><br /></span><span class="hl-number">1</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">a,</span><span class="hl-type">A</span><span class="hl-plain"><br />(</span><span class="hl-number">0</span><span class="hl-plain">,&nbsp;</span><span class="hl-number">1</span><span class="hl-plain">)<br /></span></div></div><br /><ul><li>可以使用 UTF-8 编码的 Unicode 字符作为变量名（允许大部分Unicode，包括大部分中文字符）</li>
+</ul><ul><li>变量名不允许使用<a href="../lists/keywords.md">关键字</a></li>
+</ul><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-keyword">for</span><span class="hl-plain">=</span><span class="hl-number">1</span><span class="hl-plain"><br /></span><span class="hl-repl-error">ERROR:&nbsp;</span><span class="hl-plain">syntax:&nbsp;unexpected&nbsp;</span><span class="hl-string">"="</span><span class="hl-plain"><br /></span><span class="hl-type">Stacktrace:</span><span class="hl-plain"><br />&nbsp;[</span><span class="hl-number">1</span><span class="hl-plain">]&nbsp;top-level&nbsp;scope<br />&nbsp;&nbsp;&nbsp;@&nbsp;none:</span><span class="hl-number">1</span><span class="hl-plain"><br /></span></div></div><br /><ul><li>在REPL和一些其它的环境中，很多Unicode数学符号可以使用<code>\</code>加<code>LaTeX</code>符号名再按<code>tab</code>打出</li>
+</ul><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">α=</span><span class="hl-number">1</span><span class="hl-plain">&nbsp;</span><span class="hl-comment">#&nbsp;\alpha&lt;tab&gt;</span><br /><span class="hl-number">1</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-help">help?&gt;&nbsp;</span><span class="hl-plain">α̂₂&nbsp;</span><span class="hl-comment">#&nbsp;你从别的地方复制过来一个字符，不知道怎么打可以用help模式</span><br /><span class="hl-string">"α̂₂"</span><span class="hl-plain">&nbsp;can&nbsp;be&nbsp;typed&nbsp;by&nbsp;\alpha&lt;tab&gt;\hat&lt;tab&gt;\_2&lt;tab&gt;<br />...<br /></span></div></div><br /><p>如果有需要，Julia 甚至允许你重定义内置常量和函数。（这样做可能引发潜在的混淆，所以并<strong>不推荐</strong>）<br /><br />然而，不允许重定义一个已经在使用中的内置常量或函数</p><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">sin=</span><span class="hl-number">0</span><span class="hl-plain"><br /></span><span class="hl-number">0</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-function">cos</span><span class="hl-plain">(</span><span class="hl-number">0</span><span class="hl-plain">)<br /></span><span class="hl-number">1</span><span class="hl-plain">.</span><span class="hl-number">0</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">cos=</span><span class="hl-number">0</span><span class="hl-plain"><br /></span><span class="hl-repl-error">ERROR:&nbsp;</span><span class="hl-plain">cannot&nbsp;assign&nbsp;a&nbsp;value&nbsp;to&nbsp;variable&nbsp;</span><span class="hl-type">Base</span><span class="hl-plain">.cos&nbsp;from&nbsp;</span><span class="hl-keyword">module</span><span class="hl-plain">&nbsp;</span><span class="hl-type">Main</span><span class="hl-plain"><br /></span></div></div><br /><h2 id='header-命名规范'>命名规范<a class='docs-heading-anchor-permalink'></a></h2><p>应尽量遵循以下官方提供的命名规范</p><ul><li>对于变量
+<ul>
+<li>若用英文，变量名应首字母小写，用下划线分隔名字中的单词，但是不鼓励使用，除非不使用下划线时名字非常难读</li>
+</ul>
+</li>
+</ul><ul><li>对于<a href="../advanced/struct.md">类型</a>和<a href="../advanced/module.md">模块</a>
+<ul>
+<li>若用英文，名字应以大写字母开头，并且用大写字母而不是用下划线分隔单词</li>
+</ul>
+</li>
+</ul><ul><li>对于<a href="function.md">函数</a>和<a href="../advanced/macro.md">宏</a>
+<ul>
+<li>若用英文，名字用小写，不使用下划线</li>
+<li>会对参数进行更改的函数使用<code>!</code>结尾</li>
+</ul>
+</li>
+</ul><h2 id='header-常量'>常量<a class='docs-heading-anchor-permalink'></a></h2><p>你可以在变量名前加<code>const </code>表示常量，常量的值原则上不能被改变</p><div class='language language-jl'><div class='codeblock-header'></div><div class='codeblock-body'><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-keyword">const</span><span class="hl-plain">&nbsp;c=</span><span class="hl-number">0</span><span class="hl-plain"><br /></span><span class="hl-number">0</span><span class="hl-plain"><br /><br /></span><span class="hl-repl-code">julia&gt;&nbsp;</span><span class="hl-plain">c=</span><span class="hl-number">1</span><span class="hl-plain"><br /></span><span class="hl-type">WARNING:&nbsp;redefinition&nbsp;of&nbsp;constant&nbsp;c</span><span class="hl-plain">.&nbsp;</span><span class="hl-type">This&nbsp;may&nbsp;fail,&nbsp;cause&nbsp;incorrect&nbsp;answers,&nbsp;or&nbsp;produce&nbsp;other&nbsp;errors</span><span class="hl-plain">.<br /></span></div></div><br /><div class='admonition is-info'><header class='admonition-header'>Note</header><div class='admonition-body'><p>变量存在<a href='scope.html' target='_blank'>作用域</a></p></div></div><div id='footnote-1' class='footnote'><span>1. </span><p>https://docs.juliacn.com/latest/manual/variables/</p></div></article>
+			<nav class="docs-footer"><a class="docs-footer-prevpage" href="comment.html">« 注释</a><a class="docs-footer-nextpage" href="int.html">整数 »</a></nav>
+			<div class='giscus'></div>
+		</div>
+		<div class="modal" id="documenter-settings">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">设置</p>
+					<button class="delete"></button>
+				</header>
+				<section class="modal-card-body">
+					<p><label class="label">选择主题</label>
+						<div class="select">
+							<select id="documenter-themepicker">
+								<option value="light">light</option><option value="dark">dark</option>
+							</select>
+						</div>
+					</p>
+				</section>
+				<footer class="modal-card-foot"></footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* 语言高亮 */
+.language{
+	font-family: 'Courier New', Courier, monospace;
+	tab-size:4;
+}
+.hl-repl-code{
+	color: green;
+}
+.hl-repl-help{
+	color: wheat;
+}
+.hl-repl-pkg{
+	color: rgb(16,64,224);
+}
+.hl-repl-shell{
+	color: red;
+}
+.hl-repl-error{
+	color: red;
+}
+.hl-comment{
+	color: darkolivegreen;
+}
+.hl-string{
+	color: brown;
+}
+.hl-keyword{
+	color: purple;
+}
+.hl-special{
+	color: royalblue;
+}
+.hl-escape{
+	color: goldenrod;
+}
+.hl-insert{
+	color: skyblue;
+}
+.hl-plain{
+	color: black;
+}
+.hl-macro{
+	color: #d7c787;
+}
+.hl-function{
+	color: #d0c080;
+}
+.hl-number{
+	color: yellowgreen;
+}
+.hl-type{
+	color: forestgreen;
+}
+
+/* 主标签额外 */
+.footnote > p{
+	display: inline;
+}
+
+/* 附加功能 */
+.checkis{
+	display: none;
+}
+.codeblock-paste{
+	background-color: transparent;
+	float: right;
+}
+annotation{
+	display: none;
+}
