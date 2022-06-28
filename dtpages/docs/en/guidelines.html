@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>DoctreePages.jl</title>
+	<meta name="tURL" id="tURL" content="../../"/>
+	<meta name="description" content="English Docs/Guidelines - DoctreePages.jl">
+	<script src="../../extra/info.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../extra/main.js"></script>
+	<link id="theme-href" rel="stylesheet" type="text/css" href="../../css/light.css">
+	<link rel="stylesheet" type="text/css" href="../../css/general.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/fontawesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/solid.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/brands.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+<body>
+	<div id="documenter">
+		<nav class="docs-sidebar">
+			<div class="docs-package-name">
+			<span class="docs-autofit">DoctreePages.jl</span>
+			</div>
+			<ul class="docs-menu"></ul>
+		</nav>
+		<div class="docs-main">
+			<header class="docs-navbar">
+				<nav class="breadcrumb">
+					<ul class="is-hidden-mobile"><li class="is-active">English Docs / Guidelines</li></ul>
+					<ul class="is-hidden-tablet"><li class="is-active">English Docs / Guidelines</li></ul>
+				</nav>
+				<div class="docs-right"><a class='docs-edit-link' href='https://github.com/JuliaRoadmap/DoctreePages.jl/tree/master/docs/en/guidelines.md' target='_blank'><span class='docs-label is-hidden-touch'>edit this</span></a>
+					<a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="setting"></a>
+					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
+				</div>
+			</header>
+			<article class="content"><h1 id='header-Guidelines'>Guidelines<a class='docs-heading-anchor-permalink'></a></h1><h2 id='header-Dir Managing'>Dir Managing<a class='docs-heading-anchor-permalink'></a></h2><ul><li><p><code>assets</code> stores images or other data (determined by key <code>src_assets</code>)</p></li><li><p><code>docs</code> stores text</p></li><li><p><code>script</code> stores scripts (determined by key <code>src_script</code>)</p></li></ul><h2 id='header-Naming'>Naming<a class='docs-heading-anchor-permalink'></a></h2><p>The name part should be unique, and</p><ul><li><p>should be made up of <code>a-z</code>, <code>0-9</code> and <code>_</code></p></li><li><p>must not be <code>index</code>, since it will be automatically generated</p></li><li><p><code>setting.toml</code> is for special use (if it exists), view <a href='setting.html' target='_blank'>setting</a></p></li></ul><h2 id='header-Markdown Format'>Markdown Format<a class='docs-heading-anchor-permalink'></a></h2><ul><li><p>Files should start with <code># title</code>, and no <code># </code> should be used afterwards.</p></li><li><p>For links to the same docs field:</p><ul><li><p>use relative paths</p></li><li><p>use <code>#subtitle</code> after a link to markdown file to specify the place, uniqueness must be ensured, it will be turned to <code>#header-subtitle</code> in HTML</p></li><li><p>use <code>#Lx-Ly</code> after a link specify the lines of the first codeblock</p></li></ul></li></ul><h2 id='header-Code Block Format'>Code Block Format<a class='docs-heading-anchor-permalink'></a></h2><ul><li><p>Language name should not be empty. Use <code>plain</code> instead.</p></li><li><p>Use <code>insert-html</code> to insert HTML.</p></li><li><p>Use <code>insert-fill</code> to insert an interative answer board. It should include an instance of <code>Tuple{String, String, Regex}</code> and will be parsed by <code>eval</code>. The first is the description, the second is the standard answer and the third judges whether an answer is right. If the third parameter isn't given, It will be judged as "being the same to the standard answer".</p></li><li><p>Use <code>is-xxx</code> to insert markdown which will be shown iff <code>localStorage.getItem("is-xxx") == "true"</code>. A setting page shall be given for readers using <code>insert-html</code> block.</p></li></ul></article>
+			<nav class="docs-footer"><a class="docs-footer-prevpage" href="usage.html">« Usage</a><a class="docs-footer-nextpage" href="notice.html">Notice »</a><div class='flexbox-break'></div><p class='footer-message'>Powered by <a href='https://github.com/JuliaRoadmap/DoctreePages.jl'>DoctreePages.jl</a> and its dependencies.</p></nav>
+			
+		</div>
+		<div class="modal" id="documenter-settings">
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">setting</p>
+					<button class="delete"></button>
+				</header>
+				<section class="modal-card-body">
+					<p><label class="label">pick theme</label>
+						<div class="select">
+							<select id="documenter-themepicker">
+								<option value="light">light</option><option value="dark">dark</option>
+							</select>
+						</div>
+					</p>
+				</section>
+				<footer class="modal-card-foot"></footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
