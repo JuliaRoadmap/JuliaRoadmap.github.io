@@ -34,7 +34,7 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-Test的使用'>Test的使用<a class='docs-heading-anchor-permalink'></a></h1><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> @test 1+1==2
+			<article class="content"><h1 id='header-Test的使用'>Test的使用<a class='docs-heading-anchor-permalink'></a></h1><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> @test 1+1==2
 Test Passed
 
 julia> @testset "Exception" begin
@@ -53,7 +53,7 @@ Exception: Error During Test at REPL[8]:4
 Test Summary: | Pass  Fail  Error  Total
 Exception     |    1     1      1      3
 ERROR: Some tests did not pass: 1 passed, 1 failed, 1 errored, 0 broken.
-</code></pre></div><br /><h2 id='header-对包测试'>对包测试<a class='docs-heading-anchor-permalink'></a></h2><p>在利用Test对包测试时，应在<code>Project.toml</code>中放入</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>[extras]
+</code></pre></div><br /><h2 id='header-对包测试'>对包测试<a class='docs-heading-anchor-permalink'></a></h2><p>在利用Test对包测试时，应在<code>Project.toml</code>中放入</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>[extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]

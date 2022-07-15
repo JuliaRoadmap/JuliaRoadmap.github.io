@@ -34,7 +34,7 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-LightLearn使用基础'>LightLearn使用基础<a class='docs-heading-anchor-permalink'></a></h1><p><a href='https://github.com/Rratic/LightLearn.jl' target='_blank'>LightLearn.jl</a>是一个<a href='../blog/packages/introduction.html' target='_blank'>包</a>，可以通过在REPL键入<code>]add LightLearn</code>安装<br /><br />如果发现无法解决的问题，请在<a href='https://github.com/Rratic/LightLearn.jl/issues' target='_blank'>issue处</a>反馈</p><div class='admonition is-info'><header class='admonition-header'>Note</header><div class='admonition-body'><p>尽量获取2.2及以后的<a href='../../advanced/versionnumber.html' target='_blank'>版本</a><br /><br />若您是普通使用者，调用<code>about()</code>即可</p></div></div><h2 id='header-使用方式'>使用方式<a class='docs-heading-anchor-permalink'></a></h2><p>导入后使用<code>about()</code>，你就会看到</p><h3 id='header-流程'>流程<a class='docs-heading-anchor-permalink'></a></h3><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>init()		初始化资源
+			<article class="content"><h1 id='header-LightLearn使用基础'>LightLearn使用基础<a class='docs-heading-anchor-permalink'></a></h1><p><a href='https://github.com/Rratic/LightLearn.jl' target='_blank'>LightLearn.jl</a>是一个<a href='../blog/packages/introduction.html' target='_blank'>包</a>，可以通过在REPL键入<code>]add LightLearn</code>安装<br /><br />如果发现无法解决的问题，请在<a href='https://github.com/Rratic/LightLearn.jl/issues' target='_blank'>issue处</a>反馈</p><div class='admonition is-info'><header class='admonition-header'>Note</header><div class='admonition-body'><p>尽量获取2.2及以后的<a href='../../advanced/versionnumber.html' target='_blank'>版本</a><br /><br />若您是普通使用者，调用<code>about()</code>即可</p></div></div><h2 id='header-使用方式'>使用方式<a class='docs-heading-anchor-permalink'></a></h2><p>导入后使用<code>about()</code>，你就会看到</p><h3 id='header-流程'>流程<a class='docs-heading-anchor-permalink'></a></h3><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>init()		初始化资源
 level(name)	打开关卡name
 此时可以进行一些测试
 submit() do
@@ -43,12 +43,12 @@ end
 来提交（建议在编辑器上编辑好再复制黏贴）
 rewind()	重启当前关卡
 quit()		退出并保存存档
-</code></pre></div><br /><h3 id='header-辅助工具'>辅助工具<a class='docs-heading-anchor-permalink'></a></h3><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>menu()			列出当前所有关卡和描述
+</code></pre></div><br /><h3 id='header-辅助工具'>辅助工具<a class='docs-heading-anchor-permalink'></a></h3><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>menu()			列出当前所有关卡和描述
 vis(false)		关闭窗口
 vis(true)		打开窗口
 interval		提交时的动画间隔
 setinterval(x)	设置动画间隔
-</code></pre></div><br /><p>导入后使用<code>sandbox()</code>，你就会看到</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>欢迎使用沙盒模式！ 请保留此函数的返回值，假设为`sand`
+</code></pre></div><br /><p>导入后使用<code>sandbox()</code>，你就会看到</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>欢迎使用沙盒模式！ 请保留此函数的返回值，假设为`sand`
 tp(x,y)		移动到(x,y)处
 sand[x,y]	获取(x,y)处的数据
 sand[x,y]=v	覆盖(x,y)处的数据

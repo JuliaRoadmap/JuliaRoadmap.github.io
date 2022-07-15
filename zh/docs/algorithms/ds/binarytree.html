@@ -34,14 +34,14 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-二叉树'>二叉树<a class='docs-heading-anchor-permalink'></a></h1><p>二叉树是一种特殊的树</p><h2 id='header-代码实现'>代码实现<a class='docs-heading-anchor-permalink'></a></h2><p>一种方式是使用数组</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>mutable struct Tree{T} where T
+			<article class="content"><h1 id='header-二叉树'>二叉树<a class='docs-heading-anchor-permalink'></a></h1><p>二叉树是一种特殊的树</p><h2 id='header-代码实现'>代码实现<a class='docs-heading-anchor-permalink'></a></h2><p>一种方式是使用数组</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>mutable struct Tree{T} where T
 	num::Vector{Int}
 	par::Vector{Int}
 	lch::Vector{Int}
 	rch::Vector{Int}
 	data::Vector{T}
 end
-</code></pre></div><br /><p>一种是使用节点</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>mutable struct Tree{T} where T
+</code></pre></div><br /><p>一种是使用节点</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>mutable struct Tree{T} where T
 	num::Int
 	par::Union{Tree{T}, Nothing}
 	lch::Union{Tree{T}, Nothing}

@@ -34,7 +34,7 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-Query的使用'>Query的使用<a class='docs-heading-anchor-permalink'></a></h1><p>此包用于方便地操作<a href='dataframes.html' target='_blank'>DataFrame数据</a></p><div class='admonition is-warning'><header class='admonition-header'>Warn</header><div class='admonition-body'><p>本文档未经过审查，可能存在错误或过时用法</p></div></div><p>query操作起始于宏<code>@from</code>，第一个参数i代表着 df 中每一行来执行query命令，df代表数据源，<code>@where</code>执行过滤（filter）指令，<code>@select</code>指令将源数据的列映射为新的列，后方接的是 "{}"，这代表的是一个具名元组（namedtuple)；<code>@collect</code>决定了返回的数据结构类型,当没有这一项时，返回的是一个julia标准的迭代数据类型，collect后面不接类型时，返回一个Array</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> using DataFrames, Query
+			<article class="content"><h1 id='header-Query的使用'>Query的使用<a class='docs-heading-anchor-permalink'></a></h1><p>此包用于方便地操作<a href='dataframes.html' target='_blank'>DataFrame数据</a></p><div class='admonition is-warning'><header class='admonition-header'>Warn</header><div class='admonition-body'><p>本文档未经过审查，可能存在错误或过时用法</p></div></div><p>query操作起始于宏<code>@from</code>，第一个参数i代表着 df 中每一行来执行query命令，df代表数据源，<code>@where</code>执行过滤（filter）指令，<code>@select</code>指令将源数据的列映射为新的列，后方接的是 "{}"，这代表的是一个具名元组（namedtuple)；<code>@collect</code>决定了返回的数据结构类型,当没有这一项时，返回的是一个julia标准的迭代数据类型，collect后面不接类型时，返回一个Array</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> using DataFrames, Query
 
 julia> df = DataFrame(name=["John", "Sally", "Roger"],
                       age=[54., 34., 79.],

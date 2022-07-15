@@ -34,11 +34,11 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-C调用'>C调用<a class='docs-heading-anchor-permalink'></a></h1><p>可以使用<code>ccall</code>或<code>@ccall</code>调用C导出的库</p><div class='admonition is-info'><header class='admonition-header'>Note</header><div class='admonition-body'><p>调用时常常使用<code>C</code>开头的类型名称，也会用到<a href='ref.html' target='_blank'>引用相关知识</a></p></div></div><h2 id='header-ccall'>ccall<a class='docs-heading-anchor-permalink'></a></h2><p>原型是<code>ccall((function_name, library), returntype, (argtype1, ...), argvalue1, ...)</code>或<code>ccall(function_name, returntype, (argtype1, ...), argvalue1, ...)</code>或<code>ccall(function_pointer, returntype, (argtype1, ...), argvalue1, ...)</code>，其中library是库的路径；每个<code>argvalue</code>会通过<code>unsafe_convert(argtype, cconvert(argtype, argvalue))</code>转化为<code>argtype</code>类型实例<br /><br />调用C标准库的示例（需注意，这些函数大多在<code>Libc</code>模块中已有，无需自己ccall）</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> ccall(:srand,Cvoid,(Cint,),0)
+			<article class="content"><h1 id='header-C调用'>C调用<a class='docs-heading-anchor-permalink'></a></h1><p>可以使用<code>ccall</code>或<code>@ccall</code>调用C导出的库</p><div class='admonition is-info'><header class='admonition-header'>Note</header><div class='admonition-body'><p>调用时常常使用<code>C</code>开头的类型名称，也会用到<a href='ref.html' target='_blank'>引用相关知识</a></p></div></div><h2 id='header-ccall'>ccall<a class='docs-heading-anchor-permalink'></a></h2><p>原型是<code>ccall((function_name, library), returntype, (argtype1, ...), argvalue1, ...)</code>或<code>ccall(function_name, returntype, (argtype1, ...), argvalue1, ...)</code>或<code>ccall(function_pointer, returntype, (argtype1, ...), argvalue1, ...)</code>，其中library是库的路径；每个<code>argvalue</code>会通过<code>unsafe_convert(argtype, cconvert(argtype, argvalue))</code>转化为<code>argtype</code>类型实例<br /><br />调用C标准库的示例（需注意，这些函数大多在<code>Libc</code>模块中已有，无需自己ccall）</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> ccall(:srand,Cvoid,(Cint,),0)
 
 julia> ccall(:rand,Cint,())
 38
-</code></pre></div><br /><p>一个调用<a href='https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos' target='_blank'>windows api</a>获取鼠标指针位置的示例：</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>mutable struct Point
+</code></pre></div><br /><p>一个调用<a href='https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos' target='_blank'>windows api</a>获取鼠标指针位置的示例：</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>mutable struct Point
 	x::Clong
 	y::Clong
 end
@@ -51,7 +51,7 @@ julia> ccall((:GetCursorPos,"User32.dll"),stdcall,Cint,(Ptr{Cvoid},),Ref(pt))
 
 julia> pt
 Point(681, 404)
-</code></pre></div><br /><h2 id='header-@ccall'>@ccall<a class='docs-heading-anchor-permalink'></a></h2><p>原型是<code>@ccall library.function_name(argvalue1::argtype1, ...)::returntype</code>或<code>@ccall function_name(argvalue1::argtype1, ...)::returntype</code>或<code>@ccall $function_pointer(argvalue1::argtype1, ...)::returntype</code></p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> @ccall srand(0::Cint)::Cvoid
+</code></pre></div><br /><h2 id='header-@ccall'>@ccall<a class='docs-heading-anchor-permalink'></a></h2><p>原型是<code>@ccall library.function_name(argvalue1::argtype1, ...)::returntype</code>或<code>@ccall function_name(argvalue1::argtype1, ...)::returntype</code>或<code>@ccall $function_pointer(argvalue1::argtype1, ...)::returntype</code></p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> @ccall srand(0::Cint)::Cvoid
 
 julia> @ccall rand()::Cint
 38

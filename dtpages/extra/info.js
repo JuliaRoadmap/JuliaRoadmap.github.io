@@ -1,7 +1,8 @@
-const menu=`<li><a class="tocitem" href="$docs/zh/index.html">中文文档</a><ul><li><a class="tocitem" href="$docs/zh/usage.html">使用方式</a></li><li><a class="tocitem" href="$docs/zh/guidelines.html">规范</a></li><li><a class="tocitem" href="$docs/zh/notice.html">注意事项</a></li><li><a class="tocitem" href="$docs/zh/settings.html">设置</a></li><li><a class="tocitem" href="$docs/zh/extension.html">扩展</a></li></ul><li><li><a class="tocitem" href="$docs/en/index.html">English Docs</a><ul><li><a class="tocitem" href="$docs/en/usage.html">Usage</a></li><li><a class="tocitem" href="$docs/en/guidelines.html">Guidelines</a></li><li><a class="tocitem" href="$docs/en/notice.html">Notice</a></li><li><a class="tocitem" href="$docs/en/settings.html">Settings</a></li><li><a class="tocitem" href="$docs/en/extension.html">Extension</a></li></ul><li>`
-const buildmessage=`built at 2022/7/14 14:10:30`
+const buildmessage=`built at 2022/7/15 16:55:08`
 const page_foot=`Powered by <a href='https://github.com/JuliaRoadmap/DoctreePages.jl'>DoctreePages.jl</a> and its dependencies.`
 const tar_css=`css`
+const filesuffix=`.html`
+const menu=['',[`zh/中文文档`,`usage/使用方式`,`guidelines/规范`,`notice/注意事项`,`settings/设置`,`extension/扩展`,],[`en/English Docs`,`usage/Usage`,`guidelines/Guidelines`,`notice/Notice`,`settings/Settings`,`extension/Extension`,],]
 const configpaths=        {'headroom': 'https://cdnjs.cloudflare.com/ajax/libs/headroom/0.10.3/headroom.min',
 		'jquery': 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min',
 		'headroom-jquery': 'https://cdnjs.cloudflare.com/ajax/libs/headroom/0.10.3/jQuery.headroom.min',

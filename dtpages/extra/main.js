@@ -67,7 +67,7 @@ require(['jquery'], function ($) {
 	// Resizes the package name / sitename in the sidebar if it is too wide.
 	// Inspired by: https://github.com/davatron5000/FitText.js
 	$(document).ready(function () {
-		e = $("#documenter .docs-autofit");
+		let e = $("#documenter .docs-autofit");
 		function resize() {
 			var L = parseInt(e.css('max-width'), 10);
 			var L0 = e.width();
@@ -82,19 +82,10 @@ require(['jquery'], function ($) {
 		$(window).resize(resize);
 		$(window).on('orientationchange', resize);
 	});
-
-	// Scroll the navigation bar to the currently selected menu item
-	$(document).ready(function () {
-		var sidebar = $("#documenter .docs-menu").get(0);
-		var active = $("#documenter .docs-menu .is-active").get(0);
-		if (typeof active !== 'undefined') {
-			sidebar.scrollTop = active.offsetTop - sidebar.offsetTop - 15;
-		}
-	})
 })
 require(main_requirement, function($, hljs){
-	var pi=$("#documenter-themepicker")
-	pi.ready(function(){
+	$(document).ready(function(){
+		let pi=$("#documenter-themepicker")
 		for(let tag of pi[0].children){
 			if(tag.value==theme){
 				tag.selected=true
@@ -107,14 +98,6 @@ require(main_requirement, function($, hljs){
 			$("#theme-href")[0].href=`${tURL}${tar_css}/${theme}.css`
 			localStorage.setItem("theme",theme)
 		})
-	})
-	$(".docs-menu").ready(function(){
-		// 侧边栏
-		const _menu=menu.replaceAll("$",tURL)
-		$(".docs-menu")[0].innerHTML=_menu
-	})
-	
-	$(".content").ready(function(){
 		// 复制标题链接
 		for(let i of $(".content .docs-heading-anchor-permalink")){
 			i.onclick=function(){
@@ -129,25 +112,14 @@ require(main_requirement, function($, hljs){
 		// 代码块渲染
 		let hljs=window.hljs
 		hljs.registerAliases("plain", {languageName:"plaintext"})
+		hljs.registerAliases("jl", {languageName:"julia"})
 		hljs.highlightAll()
 		for(let i of $("code.hljs")){
 			hljs.lineNumbersBlock(i, {singleLine: true})
 			let header=i.parentElement.parentElement.firstElementChild
 			header.innerHTML=`<span class='codeblock-paste' onclick='copycodeblock(event)'>📋</span>`
 		}
-		$(".hljs-ln").ready(function(){
-			// 检测L-L定位
-			let loc=document.location.hash
-			loc=loc.substring(1,loc.length)
-			if(loc[0]=='L'){
-				var split=loc.search('-')
-				var from=Number(loc.substring(1,split))
-				var to=Number(loc.substring(split+2,loc.length))
-				scroll_to_lines(from, to)
-			}
-		})
-	})
-	$(document).ready(function(){
+		buildmenu()
 		// 检测条件激发
 		for(let i of $(".checkis")){
 			var chk=i.dataset["check"]
@@ -180,6 +152,17 @@ require(main_requirement, function($, hljs){
 		}
 		// buildmessage
 		$(".modal-card-foot").innerText=buildmessage
+		$(".hljs-ln-numbers").ready(function(){
+		// 检测L-L定位
+		let loc=document.location.hash
+		loc=loc.substring(1, loc.length)
+			if(loc[0]=='L'){
+				let split=loc.search('-')
+				let from=Number(loc.substring(1, split))
+				let to=Number(loc.substring(split+2, loc.length))
+				scroll_to_lines(from, to)
+			}
+		})
 	})
 })
 require(['jquery', 'katex'], function($, katex){
@@ -230,4 +213,108 @@ function scroll_to_lines(from, to){
 		nums[i-1].style.backgroundColor="lightgreen"
 	}
 	nums[from-1].scrollIntoView()
+}
+function buildmenu(){
+	let lis=_buildmenu(menu, "docs/", 0)
+	let dm=$(".docs-menu")[0]
+	for(let li of lis){
+		dm.appendChild(li)
+	}
+	$(".docs-chevron").bind("click", function(ev){
+		let list=ev.target.parentElement.nextElementSibling.classList
+		if(list.contains("collapsed"))list.remove("collapsed")
+		else list.add("collapsed")
+	})
+	let loc=document.location
+	let flag=false
+	for(let a of $(".tocitem")){
+		if(a.href==loc.origin+loc.pathname){
+			flag=activate_token(a)
+			break
+		}
+	}
+	if(flag){
+		let sidebar = $("#documenter .docs-menu").get(0)
+		let active = $("#documenter .docs-menu .is-active").get(0)
+		if (active != undefined) {
+			sidebar.scrollTop = active.offsetTop - sidebar.offsetTop - 15;
+		}
+	}
+}
+function _buildmenu(vec, path, level){
+	let ans=[]
+	let l=vec.length
+	let spl = (str) => {
+		let pl=str.search('/')
+		return [str.substring(0, pl), str.substring(pl+1)]
+	}
+	for(let i=1;i<l;i++){
+		let e=vec[i]
+		if(typeof e == "string"){
+			let tup=spl(e)
+			let a=document.createElement("a")
+			a.className="tocitem"
+			a.href=`${tURL}${path}${tup[0]}${filesuffix}`
+			a.innerText=tup[1]
+			let li=document.createElement("li")
+			li.appendChild(a)
+			ans.push(li)
+		}
+		else{
+			let tup=spl(e[0])
+			let a=document.createElement("a")
+			a.className="tocitem"
+			a.href=`${tURL}${path}${tup[0]}/index${filesuffix}`
+			a.innerText=tup[1]
+			let li=document.createElement("li")
+			if(level==1){
+				let iden=`menu-${path}${tup[0]}`
+				let input=document.createElement("input")
+				input.type="checkbox"
+				input.className="collapse-toggle"
+				input.id=iden
+				li.appendChild(input)
+				let label=document.createElement("label")
+				label.className="tocitem"
+				label.appendChild(a)
+				label.for=iden
+				let i=document.createElement("i")
+				i.className="docs-chevron"
+				label.appendChild(i)
+				li.appendChild(label)
+			}
+			else{
+				li.appendChild(a)
+			}
+			let clis=_buildmenu(e, `${path}${tup[0]}/`, level+1)
+			let ul=document.createElement("ul")
+			for(let cli of clis)ul.appendChild(cli)
+			if(level==1)ul.className="collapsed"
+			li.appendChild(ul)
+			ans.push(li)
+		}
+	}
+	return ans
+}
+function activate_token(node){
+	let par=node.parentNode
+	par.classList.add("is-active")
+	let ul=document.createElement("ul")
+	let flag=false
+	for(let e of $(".content > h2")){
+		let text=e.innerText
+		let li=document.createElement("li")
+		let a=document.createElement("a")
+		a.className="tocitem"
+		a.href=`#header-${text}`
+		a.innerText=text
+		li.appendChild(a)
+		ul.appendChild(li)
+		flag=true
+	}
+	if(flag){
+		ul.className="internal"
+		par.appendChild(ul)
+	}
+	return flag
 }

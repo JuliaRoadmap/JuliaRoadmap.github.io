@@ -45,7 +45,7 @@
 	[ throw = true, ]
 	[ downloader = <default>, ]
 ) -> Union{Response, RequestError}
-</code></pre></div><br /><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> io=IOBuffer()
+</code></pre></div><br /><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> io=IOBuffer()
 IOBuffer(data=UInt8[...], readable=true, writable=true, seekable=true, append=false, size=0, maxsize=Inf, ptr=1, mark=-1)
 
 julia> Downloads.request("http://httpbin.org/user-agent";output=io)
@@ -54,7 +54,7 @@ Response("http", "http://httpbin.org/user-agent", 200
 
 julia> String(take!(io))
 "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0{\n  \"user-agent\": \"curl/7.73.0 julia/1.6\"\n}\n"
-</code></pre></div><br /><h2 id='header-download'>download<a class='docs-heading-anchor-permalink'></a></h2><p>建议将下载作为它的唯一功能，其它功能用<code>request</code>实现</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> fio=open("D:/foo.png","w")
+</code></pre></div><br /><h2 id='header-download'>download<a class='docs-heading-anchor-permalink'></a></h2><p>建议将下载作为它的唯一功能，其它功能用<code>request</code>实现</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> fio=open("D:/foo.png","w")
 IOStream(<file D:/foo.png>)
 
 julia> Downloads.download("http://httpbin.org/image/png",fio);

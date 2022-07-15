@@ -34,7 +34,7 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-ZipFile的使用'>ZipFile的使用<a class='docs-heading-anchor-permalink'></a></h1><p><code>ZipFile</code>提供了对<a href='https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT' target='_blank'><code>.zip</code>格式</a>的读写支持</p><h2 id='header-读'>读<a class='docs-heading-anchor-permalink'></a></h2><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> r=ZipFile.Reader("D:/foo.zip");
+			<article class="content"><h1 id='header-ZipFile的使用'>ZipFile的使用<a class='docs-heading-anchor-permalink'></a></h1><p><code>ZipFile</code>提供了对<a href='https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT' target='_blank'><code>.zip</code>格式</a>的读写支持</p><h2 id='header-读'>读<a class='docs-heading-anchor-permalink'></a></h2><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> r=ZipFile.Reader("D:/foo.zip");
 
 julia> fs=r.files;
 
@@ -47,7 +47,7 @@ julia> fs[1].method # 此处目录被视作文件
 julia> u=readavailable(fs[2]); # 获取数据（Vector{UInt8}）
 
 julia> close(r)
-</code></pre></div><br /><h2 id='header-写'>写<a class='docs-heading-anchor-permalink'></a></h2><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> w=ZipFile.Writer("D:/bar.zip")
+</code></pre></div><br /><h2 id='header-写'>写<a class='docs-heading-anchor-permalink'></a></h2><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> w=ZipFile.Writer("D:/bar.zip")
 ZipFile.Writer for IOStream(<file D:/bar.zip>) containing 0 files:
 
 uncompressedsize method  mtime            name

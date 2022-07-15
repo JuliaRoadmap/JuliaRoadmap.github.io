@@ -34,7 +34,7 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-变量引用机制'>变量引用机制<a class='docs-heading-anchor-permalink'></a></h1><p>对于<a href='struct.html#header-%E5%8F%AF%E5%8F%98%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B' target='_blank'>可变复合类型</a>（使用<code>ismuttable(类型)</code>判断），在赋值与传参时使用引用机制，即</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> mutable struct MS
+			<article class="content"><h1 id='header-变量引用机制'>变量引用机制<a class='docs-heading-anchor-permalink'></a></h1><p>对于<a href='struct.html#header-%E5%8F%AF%E5%8F%98%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B' target='_blank'>可变复合类型</a>（使用<code>ismuttable(类型)</code>判断），在赋值与传参时使用引用机制，即</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> mutable struct MS
            v::Int
        end
 
@@ -49,12 +49,12 @@ julia> b.v=4
 
 julia> a
 MS(4)
-</code></pre></div><br /><p>对b的字段（直接或间接）进行修改时，a的值也会“同步”更改，这是因为它们绑定了相同的数据块</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> b=MS(0)
+</code></pre></div><br /><p>对b的字段（直接或间接）进行修改时，a的值也会“同步”更改，这是因为它们绑定了相同的数据块</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> b=MS(0)
 MS(0)
 
 julia> a
 MS(4)
-</code></pre></div><br /><p>对于上面的操作，由于b重新绑定了数据块，不会对a造成影响</p><h2 id='header-拷贝'>拷贝<a class='docs-heading-anchor-permalink'></a></h2><p><code>copy</code>函数可以对数组进行<code>浅拷贝(shallow copy)</code>，它只会复制外壳而不会复制内部数据</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> a=[MS(0)]
+</code></pre></div><br /><p>对于上面的操作，由于b重新绑定了数据块，不会对a造成影响</p><h2 id='header-拷贝'>拷贝<a class='docs-heading-anchor-permalink'></a></h2><p><code>copy</code>函数可以对数组进行<code>浅拷贝(shallow copy)</code>，它只会复制外壳而不会复制内部数据</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>julia> a=[MS(0)]
 1-element Vector{MS}:
  MS(0)
 
@@ -69,7 +69,7 @@ julia> push!(b, MS(1)); a
 julia> b[1].v=1; a
 1-element Vector{MS}:
  MS(1)
-</code></pre></div><br /><p><code>deepcopy</code>函数可以对物体进行<code>深拷贝(deep copy)</code>，它会复制所有东西</p></article>
+</code></pre></div><br /><p><code>deepcopy</code>函数可以对物体进行<code>深拷贝(deep copy)</code>，它会复制所有东西</p><h2 id='header-改变不可变值'>改变不可变值<a class='docs-heading-anchor-permalink'></a></h2><p>利用 <a href='https://github.com/jw3126/Setfield.jl' target='_blank'>Setfield</a> 提供的<a href='macro.html' target='_blank'>宏</a>，你可以“改变”不可变类型变量的指定字段</p></article>
 			<nav class="docs-footer"><div class='flexbox-break'></div><p class='footer-message'>Powered by <a href='https://github.com/JuliaRoadmap/DoctreePages.jl'>DoctreePages.jl</a> and its dependencies.</p></nav>
 			<div class='giscus'></div>
 		</div>

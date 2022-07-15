@@ -34,10 +34,10 @@
 					<a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a>
 				</div>
 			</header>
-			<article class="content"><h1 id='header-数据分析简介'>数据分析简介<a class='docs-heading-anchor-permalink'></a></h1><p>从一个简单的流程讲起：<br /><br />倘若我们已经准备好训练集和测试集, <strong>train_features</strong>, <strong>train_lables</strong>, <strong>test_feature</strong>, <strong>test_labels</strong><br />ps: 看看就好，我没给出数据集<br />在MLJ中，我们的习惯是构造一个机器<code>machine</code>来包装模型<code>model</code>和数据</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>@load DecisionTreeClassifier
+			<article class="content"><h1 id='header-数据分析简介'>数据分析简介<a class='docs-heading-anchor-permalink'></a></h1><p>从一个简单的流程讲起：<br /><br />倘若我们已经准备好训练集和测试集, <strong>train_features</strong>, <strong>train_lables</strong>, <strong>test_feature</strong>, <strong>test_labels</strong><br />ps: 看看就好，我没给出数据集在MLJ中，我们的习惯是构造一个机器<code>machine</code>来包装模型<code>model</code>和数据</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>@load DecisionTreeClassifier
 model = DecisionTreeClassifier()
 mach = machine(model, train_features, train_labels)
-</code></pre></div><br /><p>这是<code>model</code>的参数</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>DecisionTreeClassifier(
+</code></pre></div><br /><p>这是<code>model</code>的参数</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>DecisionTreeClassifier(
     max_depth = -1,
     min_samples_leaf = 1,
     min_samples_split = 2,
@@ -47,7 +47,7 @@ mach = machine(model, train_features, train_labels)
     merge_purity_threshold = 1.0,
     pdf_smoothing = 0.0,
     display_depth = 5) @706
-</code></pre></div><br /><p>对数据进行拟合后，要对机器进行评估</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>fit!(mach)
+</code></pre></div><br /><p>对数据进行拟合后，要对机器进行评估</p><div data-lang='jl'><div class='codeblock-header'></div><pre class='codeblock-body language-jl'><code>fit!(mach)
 # resampling: 重采样策略
 # measure: 评估指标
 # weights: 权重
@@ -59,7 +59,7 @@ evaluate!(mach, resampling = CV(nfolds = 6, shuffle = true, rng = 1234),
             resampling = CV(nfolds = 6, shuffle = true, rng = 1234),
 			measure = [area_under_curve, cross_entropy])
 
-</code></pre></div><br /><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> evaluate!(mach, resampling = CV(nfolds = 6, shuffle = true, rng = 1234),
+</code></pre></div><br /><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>julia> evaluate!(mach, resampling = CV(nfolds = 6, shuffle = true, rng = 1234),
        measure = [area_under_curve, cross_entropy])
 Evaluating over 6 folds: 100%[=========================] Time: 0:00:00
 ┌──────────────────┬───────────────┬──────────────────────────────────────────┐
@@ -70,8 +70,8 @@ Evaluating over 6 folds: 100%[=========================] Time: 0:00:00
 └──────────────────┴───────────────┴──────────────────────────────────────────┘
 _.per_observation = [missing, [[2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 36.0, ..., 2.22e-16], [36.0, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16]]]
 le = true, rng
-</code></pre></div><br /><p>如果对该机器的拟合效果不满意，可以要确定调整的参数范围，这里拿<code>model</code>的<code>n_subfeatures</code>属性为例</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>r = range(model, :n_subfeatures, lower = 0 , upper = 3 , scale = :linear)
-</code></pre></div><br /><p>再是要确定评估模型好坏的指标，这里选<code>cross_entropy</code></p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>cv = CV(nfolds = 6, shuffle = true, rng = 1234)
+</code></pre></div><br /><p>如果对该机器的拟合效果不满意，可以要确定调整的参数范围，这里拿<code>model</code>的<code>n_subfeatures</code>属性为例</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>r = range(model, :n_subfeatures, lower = 0 , upper = 3 , scale = :linear)
+</code></pre></div><br /><p>再是要确定评估模型好坏的指标，这里选<code>cross_entropy</code></p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>cv = CV(nfolds = 6, shuffle = true, rng = 1234)
 self_tuning_model = TunedModel(model = model,
                                range = r,
                                repeats = 3,  # repeats: 重采样次数
@@ -79,10 +79,10 @@ self_tuning_model = TunedModel(model = model,
                                resampling = cv,
                                measure = cross_entropy)
 self_tuning_mach = machine(self_tuning_model, train_features, train_labels)
-</code></pre></div><br /><p>拟合后，取最优模型</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>fit!(self_tuning_mach)
+</code></pre></div><br /><p>拟合后，取最优模型</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>fit!(self_tuning_mach)
 best_model = fitted_params(self_tuning_mach).best_model
 best_mach = machine(best_model, train_features, train_labels)
-</code></pre></div><br /><p>查看评估结果</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> evaluate!(best_mach, resampling = cv,
+</code></pre></div><br /><p>查看评估结果</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>julia> evaluate!(best_mach, resampling = cv,
        measure = [area_under_curve, cross_entropy])
 Evaluating over 6 folds: 100%[=========================] Time: 0:00:00
 ┌──────────────────┬───────────────┬────────────────────────────────────────────┐
@@ -92,10 +92,10 @@ Evaluating over 6 folds: 100%[=========================] Time: 0:00:00
 │ cross_entropy    │ 6.97          │ [9.01, 6.64, 7.59, 5.69, 6.64, 6.25]       │
 └──────────────────┴───────────────┴────────────────────────────────────────────┘
 _.per_observation = [missing, [[2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 2.22e-16], [2.22e-16, 2.22e-16, ..., 36.0]]]
-</code></pre></div><br /><p>如果要调整多个参数怎么办?</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>r1 = range(model, :hyper1, ...)
+</code></pre></div><br /><p>如果要调整多个参数怎么办?</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>r1 = range(model, :hyper1, ...)
 r2 = range(model, :hyper2, ...)
 self_tuning_model = TunedModel(model = model, range = [r1, r2], ...)
-</code></pre></div><br /><p>也可以用<strong>学习曲线 learning_curve</strong>先看看参数范围对评估结果的影响，<br />同样要确定参数范围, 重采样策略和评估标准</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>curve = learning_curve(mach,
+</code></pre></div><br /><p>也可以用<strong>学习曲线 learning_curve</strong>先看看参数范围对评估结果的影响，同样要确定参数范围, 重采样策略和评估标准</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>curve = learning_curve(mach,
     range = r_n,
     resampling = Holdout(fraction_train = 0.8, shuffle = true, rng = 1234),
     measure = cross_entropy
@@ -106,10 +106,10 @@ plot(curves.parameter_values,
     xlab = curves.parameter_name,
     ylab = "Holdout estimate of cross_entropy error"
 )
-</code></pre></div><br /><p>![pic](/home/steiner/图片/2020-07-11 20-57-56 的屏幕截图.png)</p><p>最后，经过各种调整后，取得最优模型，投入应用</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>best_model = fitted_params(self_tuning_mach).best_model
+</code></pre></div><br /><p>![pic](/home/steiner/图片/2020-07-11 20-57-56 的屏幕截图.png)</p><p>最后，经过各种调整后，取得最优模型，投入应用</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>best_model = fitted_params(self_tuning_mach).best_model
 best_machine = machine(best_model, train_features, train_labels)
 predict_labels = predict(best_machine, test_features)
-</code></pre></div><br /><p>用测试样本评估</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>julia> evaluate(best_model, test_features, test_labels,
+</code></pre></div><br /><p>用测试样本评估</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>julia> evaluate(best_model, test_features, test_labels,
        resampling = cv,
        measure = [area_under_curve, cross_entropy])
 Evaluating over 6 folds: 100%[=========================] Time: 0:00:00
@@ -123,7 +123,7 @@ _.per_observation = [missing, [[2.22e-16, 2.22e-16, ..., 36.0], [2.22e-16, 2.22e
 </code></pre></div><br /><h3 id='header-总结一下'>总结一下<a class='docs-heading-anchor-permalink'></a></h3><p>流程:</p><div data-lang='plain'><div class='codeblock-header'></div><pre class='codeblock-body language-plain'><code>machine 构造 -> 评估 -> 调整 -> 投入应用
             ^            |
 			|____________|
-</code></pre></div><br /><h3 id='header-几点疑惑'>几点疑惑<a class='docs-heading-anchor-permalink'></a></h3><ol><li><p>TunedModel</p><ol><li><p>模型调整中 GridSearch调整策略的参数<br /><code>Grid(goal=nothing, resolution=10, rng=Random.GLOBAL_RNG, shuffle=true)</code><br /><code>rng</code>, <code>shuffle</code>我都清楚，不过<code>goal</code>和<code>resolution</code>我就不知道了</p></li><li><p>TunedModel 中参数<code>n</code>的确定<br /><code>n=default_n(tuning, range)</code><br />也可以自己设定， 现在我不知道<code>tuning</code>策略与<code>range</code>有什么关系，尤其是<code>GridSearch</code></p></li><li><p>range中的<code>scale</code><br />文档是这么写的</p><blockquote><p>If scale is unspecified, it is set to :linear, :log, :logminus, or :linear,<br />according to whether the interval (lower, upper) is bounded, right-unbounded,<br />left-unbounded, or doubly unbounded, respectively. Note upper=Inf and lower=-Inf<br />are allowed.<br />我的问题是，这玩样是不是从<code>lower</code>到<code>upper</code>，然后画一条<code>scale</code>的曲线，他的个数与<code>tuning</code>策略之间会相互影响吗？</p></blockquote></li></ol></li><li><p>learning_curve</p><ol><li><p>绘制多条曲线<br />在文档里我只看到<code>EnsembleModel</code>的例子</p><div data-lang='julia-repl'><div class='codeblock-header'></div><pre class='codeblock-body language-julia-repl'><code>X, y = @load_boston
+</code></pre></div><br /><h3 id='header-几点疑惑'>几点疑惑<a class='docs-heading-anchor-permalink'></a></h3><ol><li><p>TunedModel</p><ol><li><p>模型调整中 GridSearch调整策略的参数<code>Grid(goal=nothing, resolution=10, rng=Random.GLOBAL_RNG, shuffle=true)</code><code>rng</code>, <code>shuffle</code>我都清楚，不过<code>goal</code>和<code>resolution</code>我就不知道了</p></li><li><p>TunedModel 中参数<code>n</code>的确定<code>n=default_n(tuning, range)</code>也可以自己设定， 现在我不知道<code>tuning</code>策略与<code>range</code>有什么关系，尤其是<code>GridSearch</code></p></li><li><p>range中的<code>scale</code>文档是这么写的</p><blockquote><p>If scale is unspecified, it is set to :linear, :log, :logminus, or :linear,according to whether the interval (lower, upper) is bounded, right-unbounded,left-unbounded, or doubly unbounded, respectively. Note upper=Inf and lower=-Infare allowed.我的问题是，这玩样是不是从<code>lower</code>到<code>upper</code>，然后画一条<code>scale</code>的曲线，他的个数与<code>tuning</code>策略之间会相互影响吗？</p></blockquote></li></ol></li><li><p>learning_curve</p><ol><li><p>绘制多条曲线在文档里我只看到<code>EnsembleModel</code>的例子</p><div data-lang='julia'><div class='codeblock-header'></div><pre class='codeblock-body language-julia'><code>X, y = @load_boston
 atom = @load RidgeRegressor pkg=MultivariateStats
 ensemble = EnsembleModel(atom = atom, n = 1000)
 mach = machine(ensemble, X, y)
@@ -142,7 +142,7 @@ r_n = range(ensemble, :n, lower = 1, upper = 50)
       xlab = curves.parameter_name,
       ylab = "Holdout estimate of RMS error")
 </code></pre></div><br /></li></ol></li></ol><p><img src='https://alan-turing-institute.github.io/MLJ.jl/stable/img/learning_curve_n.png' alt='pic'></p></article>
-			<nav class="docs-footer"><a class="docs-footer-prevpage" href="index.html">« 索引</a><a class="docs-footer-nextpage" href="regressor.html">机器学习算法介绍 »</a><div class='flexbox-break'></div><p class='footer-message'>Powered by <a href='https://github.com/JuliaRoadmap/DoctreePages.jl'>DoctreePages.jl</a> and its dependencies.</p></nav>
+			<nav class="docs-footer"><a class="docs-footer-prevpage" href="index.html">« 索引</a><a class='docs-footer-nextpage' href='regressor.html'>« 机器学习算法介绍</a><div class='flexbox-break'></div><p class='footer-message'>Powered by <a href='https://github.com/JuliaRoadmap/DoctreePages.jl'>DoctreePages.jl</a> and its dependencies.</p></nav>
 			<div class='giscus'></div>
 		</div>
 		<div class="modal" id="documenter-settings">
